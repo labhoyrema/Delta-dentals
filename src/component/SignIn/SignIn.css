@@ -1,0 +1,65 @@
+.signin-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+  border: 1px solid #818080;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 11px;
+}
+* :focus {
+  outline: o;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+.input-email {
+  display: block;
+  border: none;
+  border-bottom: 1px solid #333;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.input-password {
+  display: block;
+  border: none;
+  border-bottom: 1px solid #333;
+  margin-bottom: 30px;
+  width: 100%;
+}
+.form-submit {
+  margin-bottom: 30px;
+}
+.line-left {
+  height: 1px;
+  background-color: #333;
+  width: 120px;
+}
+.line-right {
+  height: 1px;
+  background-color: #333;
+  width: 120px;
+}
+.divider p {
+  margin: 0 10px 2px 10px;
+}
+.divider {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.btn-google {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  position: relative;
+  height: 55px;
+}
+.btn-google img {
+  position: absolute;
+  left: 20px;
+  top: 20%;
+}
