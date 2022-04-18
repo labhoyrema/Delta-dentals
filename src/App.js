@@ -8,11 +8,13 @@ import Services from "./component/Services/Services";
 import Notfound from "./component/Notfound/Notfound";
 import SignIn from "./component/SignIn/SignIn";
 import SignUp from "./component/SignUp/SignUp";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <>
       <Header />
+      <Toaster />
       <Routes>
         <Route path="/" element={<Home></Home>} />
         <Route path="/Blog" element={<Blog></Blog>} />

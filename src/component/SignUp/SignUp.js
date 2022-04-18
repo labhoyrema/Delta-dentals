@@ -7,7 +7,9 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
+
 import { auth } from "../../firebase-init";
+import toast from "react-hot-toast";
 const provider = new GoogleAuthProvider();
 
 const SignUp = () => {
@@ -18,15 +20,27 @@ const SignUp = () => {
     value: "",
     error: "",
   });
-
+  console.log(email);
   const handleEmail = (event) => {
-    setEmail(event);
+    if (/\S+@\S+\.\S+/.test(event)) {
+      setEmail({ value: event, error: "" });
+    } else {
+      setEmail({ value: "", error: "Invalid Email" });
+    }
   };
   const handlePassword = (event) => {
-    setPassword(event);
+    if (event.length < 7) {
+      setPassword({ value: "", error: "password too short" });
+    } else {
+      setPassword({ value: event, error: "" });
+    }
   };
   const handleConfirmPassword = (event) => {
-    setConfirmPassword(event);
+    if (event === password.value) {
+      setConfirmPassword({ value: event, error: "" });
+    } else {
+      setConfirmPassword({ value: "", error: "Password doesn't match" });
+    }
   };
 
   const googleAuth = () => {
@@ -45,22 +59,34 @@ const SignUp = () => {
   };
   const handleSignup = (event) => {
     event.preventDefault();
-    const email = event.target.email.value;
-    const password = event.target.password.value;
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user);
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorMessage);
-        // ..
-      });
-    console.log("Signup");
+    if (email.value === "") {
+      setEmail({ value: "", error: "Email is required" });
+    }
+    if (password.value === "") {
+      setPassword({ value: "", error: "Password is required" });
+    }
+
+    if (
+      email.value &&
+      password.value &&
+      confirmPassword.value === password.value
+    ) {
+      createUserWithEmailAndPassword(auth, email.value, password.value)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+
+          navigate("/");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorMessage);
+          // ..
+        });
+      console.log("Signup");
+    }
   };
 
   return (
@@ -76,7 +102,10 @@ const SignUp = () => {
               name="email"
               id="email"
               placeholder="Email"
+              required
             />
+
+            {email?.error ? <p className="errors">{email.error}</p> : ""}
             <input
               onBlur={(event) => handlePassword(event.target.value)}
               className="input-password"
@@ -84,7 +113,9 @@ const SignUp = () => {
               name="password"
               id="password"
               placeholder="Password"
+              required
             />
+            {password?.error ? <p className="errors">{password.error}</p> : ""}
             <input
               onBlur={(event) => handleConfirmPassword(event.target.value)}
               className="input-email"
@@ -93,6 +124,11 @@ const SignUp = () => {
               id="confirm-password"
               placeholder="confirm password"
             />
+            {confirmPassword?.error ? (
+              <p className="errors">{confirmPassword.error}</p>
+            ) : (
+              ""
+            )}
             <button type="submit" className="form-submit">
               SignUp
             </button>

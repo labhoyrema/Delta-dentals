@@ -8,6 +8,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../../firebase-init";
+import toast from "react-hot-toast";
 
 const provider = new GoogleAuthProvider();
 
@@ -15,7 +16,6 @@ const SignIn = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
 
   console.log(email);
   const googleAuth = () => {
@@ -39,34 +39,34 @@ const SignIn = () => {
   const handlePassword = (event) => {
     setPassword(event);
   };
-  const handleConfirmPassword = (event) => {
-    setConfirmPassword(event);
-  };
+
   const handleLogin = (event) => {
     event.preventDefault();
-    const email = event.target.email.value;
-    const password = event.target.password.value;
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
 
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorMessage);
-      });
+    if (email.value && password.value) {
+      signInWithEmailAndPassword(auth, email.value, password.value)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+
+          // ...
+          navigate("/");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorMessage);
+        });
+    }
   };
   return (
     <div className="container-fm ">
       <div className="signin-container">
         <h1>Longin</h1>
         <div>
-          <form className="form-container">
+          <form className="form-container" onSubmit={handleLogin}>
             <input
-              onChange={(event) => handleEmail(event.target.value)}
+              onBlur={(event) => handleEmail(event.target.value)}
               className="input-email"
               type="text"
               name="email"
@@ -74,7 +74,7 @@ const SignIn = () => {
               placeholder="Email"
             />
             <input
-              onChange={(event) => {
+              onBlur={(event) => {
                 handlePassword(event.target.value);
               }}
               className="input-password"

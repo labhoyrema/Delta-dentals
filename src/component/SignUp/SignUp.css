@@ -99,3 +99,8 @@
   text-decoration: underline;
   font-weight: 500;
 }
+.errors {
+  font-size: 12px;
+  margin-top: 0;
+  color: red;
+}
