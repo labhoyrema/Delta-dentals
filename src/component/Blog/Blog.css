@@ -1,0 +1,7 @@
+.bg-i {
+  height: 50vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(https://static.javatpoint.com/tutorial/firebase/images/firebase-upload-files-in-cloud-storage.png);
+}

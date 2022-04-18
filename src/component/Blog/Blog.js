@@ -1,11 +1,8 @@
 import React from "react";
+import "./Blog.css";
 
 const Blog = () => {
-  return (
-    <div>
-      <h1>BLog page</h1>
-    </div>
-  );
+  return <div className="bg-i"></div>;
 };
 
 export default Blog;

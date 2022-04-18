@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
+  sendEmailVerification,
   signInWithPopup,
 } from "firebase/auth";
 
@@ -20,7 +21,7 @@ const SignUp = () => {
     value: "",
     error: "",
   });
-  console.log(email);
+  // input error handleling *****************************************
   const handleEmail = (event) => {
     if (/\S+@\S+\.\S+/.test(event)) {
       setEmail({ value: event, error: "" });
@@ -42,6 +43,7 @@ const SignUp = () => {
       setConfirmPassword({ value: "", error: "Password doesn't match" });
     }
   };
+  // Google Loging *****************************************
 
   const googleAuth = () => {
     signInWithPopup(auth, provider)
@@ -57,6 +59,8 @@ const SignUp = () => {
         // The email of the user's account used.
       });
   };
+
+  //******************************* */ submit form function
   const handleSignup = (event) => {
     event.preventDefault();
     if (email.value === "") {
@@ -76,7 +80,7 @@ const SignUp = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
-
+          verifyEmail();
           navigate("/");
         })
         .catch((error) => {
@@ -87,6 +91,10 @@ const SignUp = () => {
         });
       console.log("Signup");
     }
+  };
+  //***************************** */ Email veryfication send
+  const verifyEmail = () => {
+    sendEmailVerification(auth.currentUser).then(() => {});
   };
 
   return (

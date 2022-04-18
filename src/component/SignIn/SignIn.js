@@ -4,6 +4,7 @@ import GoogleLogo from "../../images/google.svg";
 import { useNavigate } from "react-router-dom";
 import {
   GoogleAuthProvider,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth";
@@ -14,10 +15,10 @@ const provider = new GoogleAuthProvider();
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState({ value: "", error: "" });
+  const [password, setPassword] = useState({ value: "", error: "" });
 
-  console.log(email);
+  //Google Login signin *******************************************************
   const googleAuth = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
@@ -33,12 +34,15 @@ const SignIn = () => {
         // The email of the user's account used.
       });
   };
+  /// erroor handleling *******************************************************
   const handleEmail = (event) => {
-    setEmail(event);
+    setEmail({ value: event, error: "" });
   };
   const handlePassword = (event) => {
-    setPassword(event);
+    setPassword({ value: event, error: "" });
   };
+
+  // Login *********************************** Function**********************
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -59,6 +63,12 @@ const SignIn = () => {
         });
     }
   };
+  // Forget password reset
+  const handlePasswordreset = () => {
+    sendPasswordResetEmail(auth, email).then(() => {
+      console.log("email send");
+    });
+  };
   return (
     <div className="container-fm ">
       <div className="signin-container">
@@ -72,6 +82,7 @@ const SignIn = () => {
               name="email"
               id="email"
               placeholder="Email"
+              required
             />
             <input
               onBlur={(event) => {
@@ -83,9 +94,13 @@ const SignIn = () => {
               id="password"
               placeholder="Password"
             />
+            <span className="reset" onClick={handlePasswordreset}>
+              Forget Password
+            </span>
             <button type="submit" className="form-submit">
               Login
             </button>
+
             <p>
               Dalta Dental ?
               <span className="toggle" onClick={() => navigate("/SignUp")}>

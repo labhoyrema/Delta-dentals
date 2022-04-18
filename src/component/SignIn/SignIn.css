@@ -31,7 +31,7 @@
   width: 100%;
 }
 .form-submit {
-  margin-bottom: 0;
+  margin-bottom: 5px !important;
   height: 55px;
   border: none;
   background-color: #2db977;
@@ -102,4 +102,15 @@
   text-decoration: underline;
   font-weight: 500;
   margin-top: 0;
+}
+.reset {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: 600px;
+  color: rgb(3, 63, 35);
+  cursor: pointer;
+}
+.reset:hover {
+  text-decoration: underline;
 }
