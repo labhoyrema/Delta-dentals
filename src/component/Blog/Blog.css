@@ -3,5 +3,9 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  margin-bottom: 30px;
   background-image: url(https://static.javatpoint.com/tutorial/firebase/images/firebase-upload-files-in-cloud-storage.png);
+}
+.title p {
+  margin-bottom: 30px;
 }
