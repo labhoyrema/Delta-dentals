@@ -50,9 +50,7 @@ const Header = () => {
             <Nav.Link as={Link} to={"/CheckOut"}>
               CheckOut
             </Nav.Link>
-            <Nav.Link as={Link} to={"/Services"}>
-              Services
-            </Nav.Link>
+
             {user?.uid ? (
               <Button onClick={hangleLogOut} variant="success">
                 SignOut

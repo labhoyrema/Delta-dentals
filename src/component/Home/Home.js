@@ -33,7 +33,7 @@ const Home = () => {
       <Container className="mt-5 mb-5">
         <Row>
           <div>
-            <h3>Services</h3>
+            <h3 className="mt-5 mb-5 text-center">Services</h3>
           </div>
           {cart.map((data) => (
             <Col sm={12} md={4} key={data.id}>
