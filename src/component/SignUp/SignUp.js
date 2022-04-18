@@ -63,6 +63,7 @@ const SignUp = () => {
   //******************************* */ submit form function
   const handleSignup = (event) => {
     event.preventDefault();
+
     if (email.value === "") {
       setEmail({ value: "", error: "Email is required" });
     }
@@ -88,6 +89,11 @@ const SignUp = () => {
           const errorMessage = error.message;
           console.log(errorMessage);
           // ..
+          if (errorMessage.includes("email-already-in-use")) {
+            toast.error("Already Exist", { id: "error" });
+          } else {
+            toast.error(errorMessage, { id: "error" });
+          }
         });
       console.log("Signup");
     }
