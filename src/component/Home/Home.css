@@ -1,0 +1,32 @@
+.bg-img {
+  background-image: url(https://images.pexels.com/photos/3779705/pexels-photo-3779705.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  height: 80vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.hero-text {
+  height: 400px;
+  color: #333;
+
+  padding-top: 200px;
+}
+.hero-text h2 {
+  font-size: 42px;
+}
+.hero-text p {
+  font-size: 18px;
+}
+@media only screen and (max-width: 600px) {
+  .hero-text {
+    height: 80vh;
+    padding-top: 60px;
+  }
+  .hero-text h2 {
+    font-size: 30px;
+    color: black;
+  }
+}
+.mt {
+  margin-top: 30px;
+}

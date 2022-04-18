@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Orthodontics",
+    "image": "https://images.pexels.com/photos/3845735/pexels-photo-3845735.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "text": "From Invisalign to braces that go behind your teeth, we've got your teeth straightening needs covered. "
+  },
+  {
+    "id": 1,
+    "title": "Painless Dental Procedures",
+    "image": "https://images.pexels.com/photos/4269694/pexels-photo-4269694.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "text": "From dental emergencies to implants, our team of dentists and oral surgeons have you covered. "
+  },
+  {
+    "id": 1,
+    "title": "Routine exams",
+    "image": "https://images.pexels.com/photos/4270361/pexels-photo-4270361.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "text": "We've reimagined your cleaning and exam to be an experience you look forward to."
+  }
+]

@@ -1,13 +1,12 @@
 import React from "react";
-import "./SignIn.css";
+import "./SignUp.css";
 import GoogleLogo from "../../images/google.svg";
 import { useNavigate } from "react-router-dom";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../firebase-init";
-
 const provider = new GoogleAuthProvider();
 
-const SignIn = () => {
+const SignUp = () => {
   const navigate = useNavigate();
   const googleAuth = () => {
     signInWithPopup(auth, provider)
@@ -22,12 +21,20 @@ const SignIn = () => {
         // The email of the user's account used.
       });
   };
+
   return (
-    <div className="container-fm ">
+    <div className="container-f">
       <div className="signin-container">
-        <h1>Longin</h1>
+        <h1>SignUp</h1>
         <div>
           <form className="form-container">
+            <input
+              className="input-email"
+              type="text"
+              name="text"
+              id="text"
+              placeholder="Your Name"
+            />
             <input
               className="input-email"
               type="text"
@@ -46,9 +53,9 @@ const SignIn = () => {
               Login
             </button>
             <p>
-              Dalta Dental ?
-              <span className="toggle" onClick={() => navigate("/SignUp")}>
-                Create New Account
+              Already have an account?
+              <span className="toggle" onClick={() => navigate("/SignIn")}>
+                Login
               </span>
             </p>
           </form>
@@ -71,4 +78,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
