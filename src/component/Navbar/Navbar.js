@@ -1,10 +1,37 @@
-import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { Container, Nav, Navbar, Button } from "react-bootstrap";
 import dlogo from "../../images/logo.png";
 import "./Navbar.css";
+import { auth } from "../../firebase-init";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 
 const Header = () => {
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+        // User is signed in, see docs for a list of available properties
+
+        // ...
+      } else {
+        setUser({});
+        // User is signed out
+        // ...
+      }
+    });
+  }, []);
+  const hangleLogOut = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
+
   return (
     <Navbar className="container" bg="light" expand="lg">
       <Container>
@@ -23,22 +50,20 @@ const Header = () => {
             <Nav.Link as={Link} to={"/Services"}>
               Services
             </Nav.Link>
-            <Button
-              className="gap-left"
-              as={Link}
-              to={"/SignUp"}
-              variant="success"
-            >
-              Sign Up
-            </Button>
-            <Button
-              className="margin-left"
-              as={Link}
-              to={"/SignIn"}
-              variant="success"
-            >
-              Login
-            </Button>
+            {user?.uid ? (
+              <Button onClick={hangleLogOut} variant="success">
+                SignOut
+              </Button>
+            ) : (
+              <Button
+                className="gap-left"
+                as={Link}
+                to={"/SignUp"}
+                variant="success"
+              >
+                SignIn
+              </Button>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
